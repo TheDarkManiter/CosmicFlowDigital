@@ -1,22 +1,35 @@
+import { Link } from "react-router-dom";
+import logo from "./logo-cosmic-flow-digital.png";
+
 const Footer = () => {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="site-footer">
       <div className="container footer-content">
-        <div>
-          <p className="footer-title">Cosmic Flow Digital</p>
-          <p className="footer-note">
-            Placeholder legal: completa términos, privacidad y datos oficiales
-            cuando estén disponibles.
-          </p>
+        <div className="footer-brand">
+          <img
+            className="footer-logo"
+            src={logo}
+            alt="Logo de Cosmic Flow Digital"
+          />
+          <div>
+            <p className="footer-title">Cosmic Flow Digital</p>
+            <p className="footer-note">Desarrollo web · E-commerce · Growth</p>
+            <p className="footer-legal">
+              Aviso de privacidad · Términos (cuando estén listos)
+            </p>
+          </div>
         </div>
         <div className="footer-links">
-          <a href="#" aria-label="Placeholder de LinkedIn">
-            LinkedIn (placeholder)
-          </a>
-          <a href="#" aria-label="Placeholder de Instagram">
-            Instagram (placeholder)
-          </a>
+          <Link to="/services">Servicios</Link>
+          <Link to="/packages">Paquetes</Link>
+          <Link to="/process">Proceso</Link>
+          <Link to="/contact">Contacto</Link>
         </div>
+      </div>
+      <div className="container footer-bottom">
+        <p>© {year} Cosmic Flow Digital</p>
       </div>
     </footer>
   );

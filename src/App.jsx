@@ -14,8 +14,8 @@ const App = () => {
         </main>
         <CTA
           label="Hablemos por WhatsApp"
-          helper="Placeholder: agrega tu link oficial de WhatsApp."
-          href="#"
+          helper="Respuesta rápida en horario laboral."
+          href="https://wa.me/525578296609"
           variant="floating"
         />
         <Footer />

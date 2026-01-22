@@ -1,16 +1,19 @@
 import { NavLink } from "react-router-dom";
+import logo from "./logo-cosmic-flow-digital.png";
 
 const Header = () => {
   return (
     <header className="site-header">
       <div className="container header-content">
         <div className="brand">
-          <span className="brand-mark" aria-hidden="true">
-            ✦
-          </span>
+          <img
+            className="brand-logo"
+            src={logo}
+            alt="Logo de Cosmic Flow Digital"
+          />
           <div>
             <p className="brand-name">Cosmic Flow Digital</p>
-            <p className="brand-tagline">Crecimiento digital con visión galáctica</p>
+            <p className="brand-tagline">Deja tu huella online.</p>
           </div>
         </div>
         <nav className="main-nav">
@@ -18,10 +21,15 @@ const Header = () => {
             Inicio
           </NavLink>
           <NavLink to="/services">Servicios</NavLink>
-          <NavLink to="/pricing">Pricing</NavLink>
+          <NavLink to="/packages">Paquetes</NavLink>
           <NavLink to="/process">Proceso</NavLink>
           <NavLink to="/contact">Contacto</NavLink>
         </nav>
+        <div className="header-actions">
+          <NavLink className="header-cta" to="/contact">
+            Cotizar
+          </NavLink>
+        </div>
       </div>
     </header>
   );
