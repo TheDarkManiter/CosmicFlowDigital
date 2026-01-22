@@ -1,4 +1,18 @@
-const PricingCard = ({ title, price, description, items, highlight }) => {
+import { Link } from "react-router-dom";
+
+const PricingCard = ({
+  title,
+  price,
+  description,
+  items,
+  highlight,
+  ctaLabel,
+  ctaTo,
+}) => {
+  const isExternalCta =
+    typeof ctaTo === "string" && /^https?:\/\//i.test(ctaTo);
+  const resolvedLabel = ctaLabel || "Solicitar propuesta";
+
   return (
     <article className={highlight ? "pricing-card highlight" : "pricing-card"}>
       <header>
@@ -11,9 +25,22 @@ const PricingCard = ({ title, price, description, items, highlight }) => {
           <li key={item}>{item}</li>
         ))}
       </ul>
-      <button className="pricing-cta" type="button">
-        Solicitar propuesta
-      </button>
+      {ctaTo ? (
+        isExternalCta ? (
+          <a
+            className="pricing-cta"
+            href={ctaTo}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {resolvedLabel}
+          </a>
+        ) : (
+          <Link className="pricing-cta" to={ctaTo}>
+            {resolvedLabel}
+          </Link>
+        )
+      ) : null}
     </article>
   );
 };
