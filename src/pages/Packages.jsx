@@ -5,6 +5,7 @@ const Packages = () => {
   const plans = [
     {
       title: "Web Start",
+      slug: "web-start",
       price: "Desde $9,500 MXN",
       description: "Ideal para comenzar y presentar tu marca con claridad.",
       items: [
@@ -15,6 +16,7 @@ const Packages = () => {
     },
     {
       title: "Web Growth",
+      slug: "web-growth",
       price: "Desde $16,500 MXN",
       description: "El más solicitado para convertir visitas en clientes.",
       items: [
@@ -26,6 +28,7 @@ const Packages = () => {
     },
     {
       title: "Web + SEO",
+      slug: "web-seo",
       price: "Desde $24,500 MXN",
       description: "Para atraer visitas orgánicas y sostener crecimiento.",
       items: [
@@ -36,6 +39,7 @@ const Packages = () => {
     },
     {
       title: "Web + SEO + Redes",
+      slug: "web-seo-redes",
       price: "Desde $32,000 MXN",
       description: "Presencia completa para generar flujo constante.",
       items: [
@@ -69,7 +73,12 @@ const Packages = () => {
         </p>
         <div className="pricing-grid">
           {plans.map((plan) => (
-            <PricingCard key={plan.title} {...plan} />
+            <PricingCard
+              key={plan.title}
+              {...plan}
+              ctaLabel="Solicitar propuesta"
+              ctaTo={`/contact?package=${plan.slug}&utm_source=site&utm_medium=cta&utm_campaign=packages&utm_content=${plan.slug}`}
+            />
           ))}
         </div>
         <div className="contact-card">
