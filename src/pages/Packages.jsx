@@ -77,7 +77,7 @@ const Packages = () => {
               key={plan.title}
               {...plan}
               ctaLabel="Solicitar propuesta"
-              ctaTo={`/contact?package=${plan.slug}`}
+              ctaTo={`/contact?package=${plan.slug}&utm_source=site&utm_medium=cta&utm_campaign=packages&utm_content=${plan.slug}`}
             />
           ))}
         </div>

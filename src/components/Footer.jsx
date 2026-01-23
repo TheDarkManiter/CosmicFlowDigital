@@ -12,6 +12,8 @@ const Footer = () => {
             className="footer-logo"
             src={logo}
             alt="Logo de Cosmic Flow Digital"
+            loading="lazy"
+            decoding="async"
           />
           <div>
             <p className="footer-title">Cosmic Flow Digital</p>

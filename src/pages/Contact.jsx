@@ -13,6 +13,15 @@ const Contact = () => {
     ],
     []
   );
+  const packageMessageBySlug = useMemo(
+    () => ({
+      "web-start": "quiero una presencia profesional clara",
+      "web-growth": "quiero leads constantes y seguimiento",
+      "web-seo": "quiero posicionarme en Google y crecer orgánico",
+      "web-seo-redes": "quiero coherencia web+redes para crecer marca",
+    }),
+    []
+  );
   const defaultPackageSlug = "web-growth";
   const selectedPackageSlug = useMemo(() => {
     const slug = searchParams.get("package");
@@ -21,6 +30,13 @@ const Contact = () => {
     }
     return defaultPackageSlug;
   }, [packageOptions, searchParams]);
+  const utmSource = searchParams.get("utm_source");
+  const utmMedium = searchParams.get("utm_medium");
+  const utmCampaign = searchParams.get("utm_campaign");
+  const utmContent = searchParams.get("utm_content");
+  const utmValues = [utmSource, utmMedium, utmCampaign, utmContent];
+  const hasUtm = utmValues.some(Boolean);
+  const utmLine = utmValues.map((value) => value || "-").join("/");
 
   const [formData, setFormData] = useState({
     package: selectedPackageSlug,
@@ -33,6 +49,7 @@ const Contact = () => {
     consent: false,
   });
   const [touched, setTouched] = useState({});
+  const [step, setStep] = useState(1);
 
   useEffect(() => {
     setFormData((prev) => ({ ...prev, package: selectedPackageSlug }));
@@ -45,9 +62,10 @@ const Contact = () => {
     "business",
     "objective",
   ];
+  const step1Fields = ["package", "business", "objective"];
 
-  const getErrors = (data) => {
-    return requiredFields.reduce((acc, field) => {
+  const getErrors = (data, fields = requiredFields) => {
+    return fields.reduce((acc, field) => {
       const value = data[field];
       if (!value || value.toString().trim() === "") {
         acc[field] = "Este campo es obligatorio.";
@@ -57,15 +75,20 @@ const Contact = () => {
   };
 
   const errors = getErrors(formData);
+  const step1Errors = getErrors(formData, step1Fields);
   const isFormValid = Object.keys(errors).length === 0;
+  const isStep1Valid = Object.keys(step1Errors).length === 0;
 
   const packageLabel =
     packageOptions.find((option) => option.slug === formData.package)?.label ||
     "Web Growth";
 
   const buildMessage = () => {
+    const packageIntent =
+      packageMessageBySlug[formData.package] || packageMessageBySlug["web-growth"];
     const lines = [
-      `Hola, soy ${formData.name}. Quiero cotizar el paquete ${packageLabel}.`,
+      `Hola, soy ${formData.name}.`,
+      `Paquete: ${packageLabel} (${packageIntent}).`,
       `Negocio: ${formData.business}.`,
       `Objetivo: ${formData.objective}.`,
       `WhatsApp: ${formData.whatsapp}.`,
@@ -75,11 +98,18 @@ const Contact = () => {
       lines.push(`Email: ${formData.email}.`);
     }
 
-    if (formData.message) {
-      lines.push(`Detalles: ${formData.message}`);
-    }
+    lines.push(
+      `Detalles: ${
+        formData.message && formData.message.trim()
+          ? formData.message
+          : "Sin comentarios adicionales."
+      }`
+    );
 
     lines.push(`Consentimiento: ${formData.consent ? "Sí" : "No"}.`);
+    if (hasUtm) {
+      lines.push(`UTM: ${utmLine}`);
+    }
 
     return lines.join("\n");
   };
@@ -102,32 +132,53 @@ const Contact = () => {
     setTouched((prev) => ({ ...prev, [name]: true }));
   };
 
-  const touchRequiredFields = () => {
+  const touchFields = (fields) => {
     setTouched((prev) => ({
       ...prev,
-      ...requiredFields.reduce((acc, field) => {
+      ...fields.reduce((acc, field) => {
         acc[field] = true;
         return acc;
       }, {}),
     }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!isFormValid) {
-      touchRequiredFields();
+  const handleContinue = () => {
+    if (!isStep1Valid) {
+      touchFields(step1Fields);
       return;
     }
-    const whatsappUrl = `https://wa.me/525578296609?text=${encodedMessage}`;
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    setStep(2);
+  };
+
+  const runIfValid = (action) => {
+    if (!isFormValid) {
+      touchFields(requiredFields);
+      return;
+    }
+    action();
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    runIfValid(() => {
+      const whatsappUrl = `https://wa.me/525578296609?text=${encodedMessage}`;
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    });
   };
 
   const handleEmailClick = () => {
-    if (!isFormValid) {
-      touchRequiredFields();
+    runIfValid(() => {
+      window.location.href = mailtoHref;
+    });
+  };
+
+  const handleFormSubmit = (event) => {
+    if (step === 1) {
+      event.preventDefault();
+      handleContinue();
       return;
     }
-    window.location.href = mailtoHref;
+    handleSubmit(event);
   };
 
   return (
@@ -147,156 +198,189 @@ const Contact = () => {
         </p>
         <div className="contact-card contact-form-card">
           <div className="form-header">
+            <div className="step-indicator" role="list">
+              <span
+                className={step === 1 ? "step active" : "step"}
+                aria-current={step === 1 ? "step" : undefined}
+              >
+                Paso 1 de 2 · Tu proyecto
+              </span>
+              <span
+                className={step === 2 ? "step active" : "step"}
+                aria-current={step === 2 ? "step" : undefined}
+              >
+                Paso 2 de 2 · Contacto
+              </span>
+            </div>
             <h2>Formulario rápido</h2>
             <p className="lead">
               Elige el paquete y dinos lo esencial para prepararte una propuesta
-              clara.
+              clara. Toma menos de 60 segundos.
             </p>
           </div>
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-grid">
-              <div className="form-field">
-                <label htmlFor="package">Paquete</label>
-                <select
-                  id="package"
-                  name="package"
-                  value={formData.package}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  aria-invalid={Boolean(touched.package && errors.package)}
-                >
-                  {packageOptions.map((option) => (
-                    <option key={option.slug} value={option.slug}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-                {touched.package && errors.package ? (
-                  <span className="form-error">{errors.package}</span>
-                ) : null}
-              </div>
-              <div className="form-field">
-                <label htmlFor="name">Nombre</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Tu nombre"
-                  value={formData.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  aria-invalid={Boolean(touched.name && errors.name)}
-                  required
-                />
-                {touched.name && errors.name ? (
-                  <span className="form-error">{errors.name}</span>
-                ) : null}
-              </div>
-              <div className="form-field">
-                <label htmlFor="whatsapp">WhatsApp</label>
-                <input
-                  id="whatsapp"
-                  name="whatsapp"
-                  type="tel"
-                  placeholder="+52 55 1234 5678"
-                  value={formData.whatsapp}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  aria-invalid={Boolean(touched.whatsapp && errors.whatsapp)}
-                  required
-                />
-                {touched.whatsapp && errors.whatsapp ? (
-                  <span className="form-error">{errors.whatsapp}</span>
-                ) : null}
-              </div>
-              <div className="form-field">
-                <label htmlFor="email">Email (opcional)</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="tu@correo.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-field">
-                <label htmlFor="business">Negocio / giro</label>
-                <input
-                  id="business"
-                  name="business"
-                  type="text"
-                  placeholder="Ej. clínica estética, agencia de viajes"
-                  value={formData.business}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  aria-invalid={Boolean(touched.business && errors.business)}
-                  required
-                />
-                {touched.business && errors.business ? (
-                  <span className="form-error">{errors.business}</span>
-                ) : null}
-              </div>
-              <div className="form-field">
-                <label htmlFor="objective">Objetivo</label>
-                <select
-                  id="objective"
-                  name="objective"
-                  value={formData.objective}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  aria-invalid={Boolean(touched.objective && errors.objective)}
-                  required
-                >
-                  <option value="Generar leads">Generar leads</option>
-                  <option value="Vender en línea">Vender en línea</option>
-                  <option value="Posicionarme (SEO)">
-                    Posicionarme (SEO)
-                  </option>
-                  <option value="Lanzar una campaña">
-                    Lanzar una campaña
-                  </option>
-                </select>
-                {touched.objective && errors.objective ? (
-                  <span className="form-error">{errors.objective}</span>
-                ) : null}
-              </div>
-              <div className="form-field full-width">
-                <label htmlFor="message">Mensaje (opcional)</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  placeholder="Cuéntanos un poco más..."
-                  rows="4"
-                  value={formData.message}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-field full-width form-consent">
-                <label className="checkbox-label" htmlFor="consent">
+          <form className="contact-form" onSubmit={handleFormSubmit}>
+            {step === 1 ? (
+              <div className="form-grid">
+                <div className="form-field">
+                  <label htmlFor="package">Paquete</label>
+                  <select
+                    id="package"
+                    name="package"
+                    value={formData.package}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    aria-invalid={Boolean(touched.package && errors.package)}
+                    required
+                  >
+                    {packageOptions.map((option) => (
+                      <option key={option.slug} value={option.slug}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                  {touched.package && errors.package ? (
+                    <span className="form-error">{errors.package}</span>
+                  ) : null}
+                </div>
+                <div className="form-field">
+                  <label htmlFor="business">Negocio / giro</label>
                   <input
-                    id="consent"
-                    name="consent"
-                    type="checkbox"
-                    checked={formData.consent}
+                    id="business"
+                    name="business"
+                    type="text"
+                    placeholder="Ej. clínica estética, agencia de viajes"
+                    value={formData.business}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    aria-invalid={Boolean(touched.business && errors.business)}
+                    required
+                  />
+                  {touched.business && errors.business ? (
+                    <span className="form-error">{errors.business}</span>
+                  ) : null}
+                </div>
+                <div className="form-field full-width">
+                  <label htmlFor="objective">Objetivo</label>
+                  <select
+                    id="objective"
+                    name="objective"
+                    value={formData.objective}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    aria-invalid={Boolean(touched.objective && errors.objective)}
+                    required
+                  >
+                    <option value="Generar leads">Generar leads</option>
+                    <option value="Vender en línea">Vender en línea</option>
+                    <option value="Posicionarme (SEO)">
+                      Posicionarme (SEO)
+                    </option>
+                    <option value="Lanzar una campaña">
+                      Lanzar una campaña
+                    </option>
+                  </select>
+                  {touched.objective && errors.objective ? (
+                    <span className="form-error">{errors.objective}</span>
+                  ) : null}
+                </div>
+              </div>
+            ) : (
+              <div className="form-grid">
+                <div className="form-field">
+                  <label htmlFor="name">Nombre</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Tu nombre"
+                    value={formData.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    aria-invalid={Boolean(touched.name && errors.name)}
+                    required
+                  />
+                  {touched.name && errors.name ? (
+                    <span className="form-error">{errors.name}</span>
+                  ) : null}
+                </div>
+                <div className="form-field">
+                  <label htmlFor="whatsapp">WhatsApp</label>
+                  <input
+                    id="whatsapp"
+                    name="whatsapp"
+                    type="tel"
+                    placeholder="+52 55 1234 5678"
+                    value={formData.whatsapp}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    aria-invalid={Boolean(touched.whatsapp && errors.whatsapp)}
+                    required
+                  />
+                  {touched.whatsapp && errors.whatsapp ? (
+                    <span className="form-error">{errors.whatsapp}</span>
+                  ) : null}
+                </div>
+                <div className="form-field">
+                  <label htmlFor="email">Email (opcional)</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="tu@correo.com"
+                    value={formData.email}
                     onChange={handleChange}
                   />
-                  Acepto ser contactado por WhatsApp o correo.
-                </label>
+                </div>
+                <div className="form-field full-width">
+                  <label htmlFor="message">Mensaje (opcional)</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Cuéntanos un poco más..."
+                    rows="4"
+                    value={formData.message}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-field full-width form-consent">
+                  <label className="checkbox-label" htmlFor="consent">
+                    <input
+                      id="consent"
+                      name="consent"
+                      type="checkbox"
+                      checked={formData.consent}
+                      onChange={handleChange}
+                    />
+                    Acepto ser contactado por WhatsApp o correo.
+                  </label>
+                </div>
               </div>
-            </div>
+            )}
             <div className="form-actions">
-              <button className="cta-button" type="submit">
-                Enviar por WhatsApp
-              </button>
-              <button
-                className="cta-button cta-secondary"
-                type="button"
-                onClick={handleEmailClick}
-                disabled={!isFormValid}
-              >
-                Enviar por correo
-              </button>
+              {step === 1 ? (
+                <button
+                  className="cta-button"
+                  type="button"
+                  onClick={handleContinue}
+                  disabled={!isStep1Valid}
+                >
+                  Continuar
+                </button>
+              ) : (
+                <>
+                  <button className="cta-button" type="submit">
+                    Enviar por WhatsApp
+                  </button>
+                  <button
+                    className="cta-button cta-secondary"
+                    type="button"
+                    onClick={handleEmailClick}
+                    disabled={!isFormValid}
+                  >
+                    Enviar por correo
+                  </button>
+                </>
+              )}
             </div>
             <div className="form-trust">
               <p>Respuesta rápida en horario laboral.</p>

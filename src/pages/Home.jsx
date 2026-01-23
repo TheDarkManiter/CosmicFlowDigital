@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import fbaLogo from "../assets/clients/logo-fighting-bulls-academy.svg";
 
 const Home = () => {
   return (
@@ -23,12 +24,12 @@ const Home = () => {
         <div className="hero-inner">
           <div className="hero-copy">
             <p className="eyebrow">Desarrollo web con enfoque en resultados</p>
-            <h1>Deja tu huella online con una web que vende.</h1>
+            <h1>Deja tu huella online con una web que vende</h1>
             <p className="lead">
               Somos un estudio que diseña y construye sitios web que se ven bien
               y funcionan mejor. Te ayudamos a atraer clientes, generar leads y
               convertir visitas en ventas con una presencia digital clara y
-              profesional.
+              profesional
             </p>
             <ul className="hero-bullets">
               <li>Velocidad que se nota</li>
@@ -84,7 +85,7 @@ const Home = () => {
             </ul>
             <p className="fineprint">
               Los resultados dependen de tu industria, tu inversión y la
-              ejecución.
+              ejecución
             </p>
           </div>
           <div className="stack-metrics">
@@ -111,10 +112,10 @@ const Home = () => {
       <div className="home-section">
         <div className="container">
           <div className="section-heading">
-            <h2>Resultados claros. Proceso transparente.</h2>
+            <h2>Resultados claros + Proceso transparente</h2>
             <p className="lead">
               Combinamos estrategia, diseño y desarrollo para avanzar rápido sin
-              perder calidad.
+              perder calidad
             </p>
           </div>
           <ul className="trust-list">
@@ -212,28 +213,52 @@ const Home = () => {
           </div>
           <div className="project-grid">
             <article className="feature-card project-card">
-              <p className="project-tag">Caso ejemplo (demo interno)</p>
-              <h3>Brisa Norte Bistro</h3>
-              <p>Reservas y visibilidad local.</p>
-              <p className="project-result">+28% reservas online</p>
+              <p className="project-tag">Cliente</p>
+              <div className="project-header">
+                <img
+                  className="project-logo"
+                  src={fbaLogo}
+                  alt="Logo Fighting Bulls Academy"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div>
+                  <h3>Fighting Bulls Academy</h3>
+                  <p>
+                    Sitio web enfocado en conversión para academia de artes
+                    marciales.
+                  </p>
+                </div>
+              </div>
+              <p className="project-result">
+                Web responsive · CTA a WhatsApp · Estructura clara
+              </p>
+              <a
+                className="text-link project-link"
+                href="https://fightingbullsacademy.netlify.app/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Ver sitio
+              </a>
             </article>
             <article className="feature-card project-card">
-              <p className="project-tag">Caso ejemplo (demo interno)</p>
+              <p className="project-tag">Demo interno</p>
               <h3>Pulse Fit Studio</h3>
               <p>Leads para membresías.</p>
-              <p className="project-result">3.1x tasa de registro</p>
+              <p className="project-result">Estructura lista para leads</p>
             </article>
             <article className="feature-card project-card">
-              <p className="project-tag">Caso ejemplo (demo interno)</p>
+              <p className="project-tag">Demo interno</p>
               <h3>Nexa Realty</h3>
               <p>Prospectos calificados.</p>
-              <p className="project-result">+42% leads calificados</p>
+              <p className="project-result">Calificación de prospectos</p>
             </article>
             <article className="feature-card project-card">
-              <p className="project-tag">Caso ejemplo (demo interno)</p>
+              <p className="project-tag">Demo interno</p>
               <h3>Soluna Market</h3>
               <p>Conversión en carrito.</p>
-              <p className="project-result">+19% conversión</p>
+              <p className="project-result">Checkout claro y confiable</p>
             </article>
           </div>
         </div>
