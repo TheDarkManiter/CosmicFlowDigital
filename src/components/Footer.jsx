@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import logo from "./logo-cosmic-flow-digital.png";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -10,8 +9,8 @@ const Footer = () => {
         <div className="footer-brand">
           <img
             className="footer-logo"
-            src={logo}
-            alt="Logo de Cosmic Flow Digital"
+            src="/logo-cosmic-flow-digital.jpg"
+            alt="Cosmic Flow Digital"
             loading="lazy"
             decoding="async"
           />

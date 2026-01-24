@@ -1,15 +1,14 @@
 import { NavLink } from "react-router-dom";
-import logo from "./logo-cosmic-flow-digital.png";
 
 const Header = () => {
   return (
     <header className="site-header">
-      <div className="container header-content">
+      <div className="container header-content header-bar">
         <div className="brand">
           <img
             className="brand-logo"
-            src={logo}
-            alt="Logo de Cosmic Flow Digital"
+            src="/logo-cosmic-flow-digital.jpg"
+            alt="Cosmic Flow Digital"
           />
           <div>
             <p className="brand-name">Cosmic Flow Digital</p>
