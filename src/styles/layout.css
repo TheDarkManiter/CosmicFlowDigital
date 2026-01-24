@@ -296,8 +296,7 @@
   font-weight: 600;
 }
 
-.cta-inline,
-.cta-floating {
+.cta-inline {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -324,11 +323,45 @@
   position: fixed;
   right: 24px;
   bottom: 24px;
-  background: rgba(11, 15, 26, 0.9);
-  border-radius: 999px;
-  padding: 10px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 54px;
+  height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(11, 15, 26, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #26c281;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 16px 28px rgba(3, 8, 18, 0.45),
+    0 0 12px rgba(38, 194, 129, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background 0.2s ease;
   z-index: 20;
+}
+
+.cta-floating-icon {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+.cta-floating:hover {
+  transform: scale(1.05);
+  background: rgba(11, 15, 26, 0.9);
+  box-shadow: 0 18px 32px rgba(3, 8, 18, 0.5),
+    0 0 16px rgba(38, 194, 129, 0.32);
+}
+
+.cta-floating:focus-visible {
+  outline: 2px solid rgba(31, 209, 255, 0.65);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-floating {
+    transition: none;
+  }
 }
 
 .site-footer {
@@ -411,7 +444,13 @@
 
   .cta-floating {
     right: 16px;
-    left: 16px;
-    align-items: center;
+    bottom: 16px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .cta-floating-icon {
+    width: 22px;
+    height: 22px;
   }
 }
