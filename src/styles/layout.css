@@ -3,6 +3,29 @@
   margin: 0 auto;
 }
 
+:root {
+  --wa-bg: rgba(11, 15, 26, 0.76);
+  --wa-border: rgba(255, 255, 255, 0.12);
+  --wa-shadow: 0 16px 28px rgba(3, 8, 18, 0.45),
+    0 0 12px rgba(38, 194, 129, 0.2);
+  --wa-icon: #26c281;
+  --wa-hover-bg: rgba(11, 15, 26, 0.9);
+  --wa-size: 54px;
+  --wa-focus: rgba(255, 255, 255, 0.35);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --wa-bg: rgba(245, 247, 252, 0.72);
+    --wa-border: rgba(11, 15, 26, 0.16);
+    --wa-shadow: 0 12px 24px rgba(11, 15, 26, 0.16),
+      0 0 10px rgba(38, 194, 129, 0.14);
+    --wa-icon: #1c8b5d;
+    --wa-hover-bg: rgba(235, 239, 247, 0.92);
+    --wa-focus: rgba(11, 15, 26, 0.35);
+  }
+}
+
 .app-shell {
   min-height: 100vh;
   display: flex;
@@ -321,22 +344,20 @@
 
 .cta-floating {
   position: fixed;
-  right: 24px;
-  bottom: 24px;
-  width: 54px;
-  height: 54px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  right: 20px;
+  bottom: 20px;
+  width: var(--wa-size);
+  height: var(--wa-size);
+  display: grid;
+  place-items: center;
   border-radius: 50%;
-  background: rgba(11, 15, 26, 0.76);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #26c281;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 16px 28px rgba(3, 8, 18, 0.45),
-    0 0 12px rgba(38, 194, 129, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease,
-    background 0.2s ease;
+  background: var(--wa-bg);
+  border: 1px solid var(--wa-border);
+  color: var(--wa-icon);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--wa-shadow);
+  transition: transform 0.15s ease, background 0.15s ease,
+    box-shadow 0.15s ease;
   z-index: 20;
 }
 
@@ -348,14 +369,12 @@
 
 .cta-floating:hover {
   transform: scale(1.05);
-  background: rgba(11, 15, 26, 0.9);
-  box-shadow: 0 18px 32px rgba(3, 8, 18, 0.5),
-    0 0 16px rgba(38, 194, 129, 0.32);
+  background: var(--wa-hover-bg);
 }
 
 .cta-floating:focus-visible {
-  outline: 2px solid rgba(31, 209, 255, 0.65);
-  outline-offset: 4px;
+  outline: 3px solid var(--wa-focus);
+  outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -445,8 +464,7 @@
   .cta-floating {
     right: 16px;
     bottom: 16px;
-    width: 48px;
-    height: 48px;
+    --wa-size: 48px;
   }
 
   .cta-floating-icon {
