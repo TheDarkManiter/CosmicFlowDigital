@@ -4,48 +4,80 @@ import PricingCard from "../components/PricingCard";
 const Packages = () => {
   const plans = [
     {
-      title: "Web Start",
-      slug: "web-start",
-      price: "Desde $9,500 MXN",
-      description: "Ideal para comenzar y presentar tu marca con claridad.",
+      title: "Flow Start",
+      slug: "flow-start",
+      price: "$500 USD · aprox. $10,000 MXN",
+      description: "Ideal para lanzar y empezar a medir desde el día uno.",
       items: [
-        "Landing o sitio corto con estructura clara",
-        "Mensaje comercial y llamados a la acción",
-        "Formulario o WhatsApp directo",
+        "Landing o sitio corto (hasta 4 secciones)",
+        "Mensaje comercial claro y CTAs estratégicos",
+        "Integración de formulario o WhatsApp",
+        "Diseño responsive y optimizado",
+        "SEO técnico inicial",
+        "Configuración de Meta Pixel y eventos básicos",
+        "Base de segmentación inicial",
+        "1 mes incluido: mantenimiento web",
+        "1 mes incluido: SEO técnico ligero",
+        "1 mes incluido: redes sociales (6 posts)",
+        "1 mes incluido: monitoreo básico de conversiones",
       ],
     },
     {
-      title: "Web Growth",
-      slug: "web-growth",
-      price: "Desde $16,500 MXN",
-      description: "El más solicitado para convertir visitas en clientes.",
+      title: "Flow Growth",
+      slug: "flow-growth",
+      price: "$900 USD · aprox. $18,000 MXN",
+      description: "Más solicitado. Sitio completo con conversión y medición.",
       items: [
-        "Secciones pensadas para vender y responder dudas",
-        "Contenido optimizado para conversión",
-        "Medición básica de resultados",
+        "Sitio web completo (hasta 6–7 secciones)",
+        "Estructura enfocada en conversión",
+        "Contenido optimizado",
+        "Integración con WhatsApp y formularios",
+        "SEO on-page base",
+        "Configuración completa de Meta Pixel",
+        "Eventos personalizados (leads, clics, envíos)",
+        "Segmentación inicial para campañas",
+        "1 mes incluido: mantenimiento web",
+        "1 mes incluido: SEO on-page básico",
+        "1 mes incluido: redes sociales (10 posts)",
+        "1 mes incluido: ajustes iniciales de conversión",
       ],
       highlight: true,
     },
     {
-      title: "Web + SEO",
-      slug: "web-seo",
-      price: "Desde $24,500 MXN",
-      description: "Para atraer visitas orgánicas y sostener crecimiento.",
+      title: "Flow Authority",
+      slug: "flow-authority",
+      price: "$1,350 USD · aprox. $27,000 MXN",
+      description: "Web estratégica con base sólida para crecer.",
       items: [
-        "SEO base en estructura y contenidos",
-        "Secciones estratégicas para posicionar",
-        "Revisión y mejoras de contenido",
+        "Web estratégica con estructura SEO",
+        "Optimización de contenidos clave",
+        "Preparación para crecimiento orgánico",
+        "Base de contenidos para redes y sitio",
+        "Pixel + eventos avanzados",
+        "Segmentación por comportamiento",
+        "Preparación para campañas SEA",
+        "1 mes incluido: mantenimiento web",
+        "1 mes incluido: SEO continuo inicial",
+        "1 mes incluido: redes sociales (14 posts)",
+        "1 mes incluido: optimización de tasa de conversión (CRO básica)",
       ],
     },
     {
-      title: "Web + SEO + Redes",
-      slug: "web-seo-redes",
-      price: "Desde $32,000 MXN",
-      description: "Presencia completa para generar flujo constante.",
+      title: "Flow Ecosystem",
+      slug: "flow-ecosystem",
+      price: "$1,750 USD · aprox. $35,000 MXN",
+      description: "Ecosistema completo para escalar con datos.",
       items: [
-        "Base de contenidos para redes y sitio",
-        "Integración con WhatsApp y formularios",
-        "Seguimiento y ajustes según objetivos",
+        "Web + SEO estratégico",
+        "Automatización básica de leads",
+        "Integración avanzada de formularios y WhatsApp",
+        "Tracking completo + Pixel + eventos",
+        "Segmentación avanzada",
+        "Preparación y estructura para SEA",
+        "1 mes incluido: mantenimiento web avanzado",
+        "1 mes incluido: SEO activo",
+        "1 mes incluido: redes sociales (20 posts)",
+        "1 mes incluido: optimización continua de conversiones",
       ],
     },
   ];
@@ -53,85 +85,51 @@ const Packages = () => {
   return (
     <section className="page">
       <Helmet>
-        <title>Paquetes | Cosmic Flow Digital</title>
+        <title>Paquetes de Lanzamiento | Cosmic Flow Digital</title>
         <meta
           name="description"
-          content="Paquetes de desarrollo web en Cancún. Elige Web Start, Web Growth, Web + SEO o Web + SEO + Redes para impulsar tu marca."
+          content="Paquetes de lanzamiento en Cancún, Q. Roo. Pago único con 1 mes incluido para medir, optimizar y convertir desde el inicio."
         />
-        <meta property="og:title" content="Paquetes | Cosmic Flow Digital" />
+        <meta
+          property="og:title"
+          content="Paquetes de Lanzamiento | Cosmic Flow Digital"
+        />
         <meta
           property="og:description"
-          content="Paquetes de desarrollo web en Cancún. Elige Web Start, Web Growth, Web + SEO o Web + SEO + Redes para impulsar tu marca."
+          content="Paquetes de lanzamiento en Cancún, Q. Roo. Pago único con 1 mes incluido para medir, optimizar y convertir desde el inicio."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
       <div className="container">
-        <h1>Paquetes</h1>
+        <h1>Paquetes de Lanzamiento</h1>
         <p className="lead">
-          Opciones claras para lanzar, crecer y vender con una web profesional.
+          Pago único · Todos incluyen 1 mes de crecimiento y medición
         </p>
+        <div className="contact-card">
+          <p className="lead">
+            No se puede optimizar lo que no se mide. Por eso todos nuestros
+            paquetes incluyen configuración de tracking, pixel y base de
+            segmentación.
+          </p>
+        </div>
         <div className="pricing-grid">
           {plans.map((plan) => (
             <PricingCard
               key={plan.title}
               {...plan}
               ctaLabel="Solicitar propuesta"
-              ctaTo={`/contact?package=${plan.slug}&utm_source=site&utm_medium=cta&utm_campaign=packages&utm_content=${plan.slug}`}
+              ctaTo={`/contact?package=${plan.slug}`}
             />
           ))}
         </div>
         <div className="contact-card">
-          <h2>¿Listo para empezar?</h2>
-          <p className="lead">
-            Cuéntanos tu objetivo y te recomendamos el paquete ideal para tu
-            negocio.
-          </p>
-          <a
-            className="cta-button"
-            href="https://wa.me/525578296609"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Hablar por WhatsApp
-          </a>
-        </div>
-        <div className="contact-card">
-          <h2>Costos externos no incluidos</h2>
-          <p className="lead">
-            Algunos servicios requieren pagos directos a terceros y no están
-            incluidos en los paquetes, salvo que se indique lo contrario.
-          </p>
+          <h2>Notas importantes</h2>
           <ul className="lead-list">
-            <li>Dominio web (.com, .mx, etc.)</li>
-            <li>Hosting</li>
-            <li>Correos profesionales</li>
-            <li>Herramientas externas (CRM, email marketing, anuncios)</li>
-          </ul>
-          <p className="footer-note">
-            Estos costos se cotizan por separado y se contratan a nombre del
-            cliente.
-          </p>
-        </div>
-        <div className="contact-card">
-          <h2>Preguntas frecuentes</h2>
-          <ul className="lead-list">
-            <li>
-              <strong>¿Incluye dominio y hosting?</strong> No, se cotizan por
-              separado para que el sitio quede a tu nombre.
-            </li>
-            <li>
-              <strong>¿Cuánto tarda el desarrollo?</strong> Depende del alcance,
-              normalmente entre 1 y 3 semanas.
-            </li>
-            <li>
-              <strong>¿Puedo cambiar de paquete?</strong> Sí, puedes escalar si
-              tu negocio lo necesita.
-            </li>
-            <li>
-              <strong>¿Ofrecen mantenimiento mensual?</strong> Sí, tenemos
-              planes mensuales para web y redes.
-            </li>
+            <li>Precios en USD como referencia</li>
+            <li>Conversión aproximada a MXN</li>
+            <li>Inversión en anuncios no incluida</li>
+            <li>Herramientas externas se cotizan por separado</li>
           </ul>
         </div>
       </div>

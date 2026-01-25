@@ -6,15 +6,18 @@ const Home = () => {
   return (
     <section className="page">
       <Helmet>
-        <title>Cosmic Flow Digital | Deja tu huella online</title>
+        <title>Cosmic Flow Digital | Diseño, tráfico y conversión</title>
         <meta
           name="description"
-          content="Desarrollo web y growth en Cancún. Creamos sitios, landing pages y e-commerce listos para convertir visitas en clientes."
+          content="Diseño web, SEO, contenido y publicidad en Cancún, Q. Roo. Creamos sistemas digitales que atraen, miden y convierten."
         />
-        <meta property="og:title" content="Cosmic Flow Digital | Deja tu huella online" />
+        <meta
+          property="og:title"
+          content="Cosmic Flow Digital | Diseño, tráfico y conversión"
+        />
         <meta
           property="og:description"
-          content="Desarrollo web y growth en Cancún. Creamos sitios, landing pages y e-commerce listos para convertir visitas en clientes."
+          content="Diseño web, SEO, contenido y publicidad en Cancún, Q. Roo. Creamos sistemas digitales que atraen, miden y convierten."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -23,18 +26,18 @@ const Home = () => {
       <div className="container hero hero--cosmic">
         <div className="hero-inner">
           <div className="hero-copy">
-            <h2 className="eyebrow">Desarrollo web con enfoque en resultados</h2>
-            <h1>Deja tu huella online con una web que vende</h1>
+            <h1>Cosmic Flow Digital</h1>
+            <h2 className="eyebrow">
+              Diseño, tráfico y conversión en un solo flujo
+            </h2>
             <p className="lead">
-              Somos un estudio que diseña y construye sitios web que se ven bien
-              y funcionan mejor. Te ayudamos a atraer clientes, generar leads y
-              convertir visitas en ventas con una presencia digital clara y
-              profesional.
+              Creamos sistemas digitales que atraen, miden y convierten. Web,
+              contenido, SEO y publicidad trabajan juntos, no por separado.
             </p>
             <ul className="hero-bullets">
-              <li>Velocidad que se nota</li>
-              <li>SEO + textos que convencen</li>
-              <li>Métricas claras</li>
+              <li>Web, contenido, SEO y ads alineados</li>
+              <li>Tracking y eventos desde el día uno</li>
+              <li>Mensajes claros para convertir</li>
               <li>WhatsApp, formularios e integraciones</li>
             </ul>
             <div className="hero-actions">
@@ -46,8 +49,8 @@ const Home = () => {
               >
                 Hablemos por WhatsApp
               </a>
-              <Link className="cta-button cta-secondary" to="/services">
-                Ver servicios
+              <Link className="cta-button cta-secondary" to="/contact">
+                Agendar llamada
               </Link>
             </div>
             <p className="hero-microcopy">
@@ -86,43 +89,36 @@ const Home = () => {
       </div>
 
       <div className="home-section">
-        <div className="container stack-block">
-          <div>
-            <p className="eyebrow">Web Start</p>
-            <h2>Web Start · Cotización personalizada</h2>
-            <p className="subheadline">
-              Diseñado para marcas que necesitan salir rápido con una presencia
-              clara, profesional y enfocada en conversión.
-              Incluye:
-            </p>
-            <ul className="lead-list">
-              <li>Landing page enfocada en conversión</li>
-              <li>Formulario de contacto + seguimiento básico</li>
-              <li>Diseño mobile-first optimizado</li>
-              <li>Base técnica lista para escalar</li>
-            </ul>
-            <p className="fineprint">
-              Los resultados dependen de tu industria, tu inversión y la
-              ejecución.
+        <div className="container">
+          <div className="section-heading">
+            <h2>Elige tu punto de entrada</h2>
+            <p className="lead">
+              Lanzamiento con pago único o planes mensuales después del primer
+              mes.
             </p>
           </div>
-          <div className="stack-metrics">
-            <div className="metric-card">
-              <p className="metric-value">+38%</p>
-              <p className="metric-label">Leads</p>
-            </div>
-            <div className="metric-card">
-              <p className="metric-value">2.4x</p>
-              <p className="metric-label">Retorno</p>
-            </div>
-            <div className="metric-card">
-              <p className="metric-value">1-3</p>
-              <p className="metric-label">Semanas de lanzamiento</p>
-            </div>
-            <div className="metric-card">
-              <p className="metric-value">Seguimiento claro</p>
-              <p className="metric-label">Control del proceso</p>
-            </div>
+          <div className="services-grid">
+            <article className="feature-card service-card">
+              <span className="service-icon" aria-hidden="true" />
+              <h3>Paquetes de Lanzamiento</h3>
+              <p>
+                Pago único con 1 mes incluido para medir y empezar a optimizar.
+              </p>
+              <Link className="text-link" to="/packages">
+                Ver paquetes
+              </Link>
+            </article>
+            <article className="feature-card service-card">
+              <span className="service-icon" aria-hidden="true" />
+              <h3>Planes Mensuales de Crecimiento</h3>
+              <p>
+                Después del primer mes, optimizamos y escalamos con un plan
+                continuo.
+              </p>
+              <Link className="text-link" to="/services">
+                Ver planes mensuales
+              </Link>
+            </article>
           </div>
         </div>
       </div>
@@ -130,21 +126,22 @@ const Home = () => {
       <div className="home-section">
         <div className="container">
           <div className="section-heading">
-            <h2>Resultados claros + Proceso transparente</h2>
+            <h2>Tráfico con intención, crecimiento con medición</h2>
             <p className="lead">
-              Combinamos estrategia, diseño y desarrollo para avanzar rápido sin
-              perder calidad.
+              Tráfico sin estrategia no convierte.
+              <br />
+              Publicidad sin medición no escala.
+              <br />
+              En Cosmic Flow Digital conectamos web, SEO, contenido y ads para
+              mejorar la tasa de conversión, no solo la visibilidad.
             </p>
           </div>
           <ul className="trust-list">
-            <li>Lanzamiento en 1–3 semanas (según alcance)</li>
-            <li>Diseño mobile-first</li>
-            <li>SEO técnico + textos que convierten</li>
-            <li>
-              Captura de leads + seguimiento inicial (WhatsApp, email o CRM
-              según paquete)
-            </li>
-            <li>Soporte cercano y mejoras por iteración</li>
+            <li>Tracking y eventos desde el inicio</li>
+            <li>Diseño enfocado en conversión</li>
+            <li>SEO técnico + contenido persuasivo</li>
+            <li>Captura de leads con WhatsApp, formularios o CRM</li>
+            <li>Optimización continua por iteración</li>
           </ul>
         </div>
       </div>
@@ -152,73 +149,37 @@ const Home = () => {
       <div className="home-section">
         <div className="container">
           <div className="section-heading">
-            <h2>Soluciones enfocadas en conversión y crecimiento</h2>
+            <h2>Un solo sistema, cuatro frentes alineados</h2>
             <p className="lead">
-              Resumen ejecutivo. El detalle completo vive en Servicios y
-              Paquetes.
+              La estrategia vive en cada punto de contacto, no en piezas sueltas.
             </p>
           </div>
           <div className="services-grid">
             <article className="feature-card service-card">
               <span className="service-icon" aria-hidden="true" />
-              <h3>Desarrollo Web</h3>
+              <h3>Web estratégica</h3>
               <p>
-                Landing pages y sitios corporativos con diseño profesional,
-                carga rápida y enfoque en conversión.
+                Sitios y landings que convierten con estructura clara y CTA
+                efectivos.
               </p>
             </article>
             <article className="feature-card service-card">
               <span className="service-icon" aria-hidden="true" />
-              <h3>E-commerce</h3>
+              <h3>Contenido + SEO</h3>
               <p>
-                Tiendas optimizadas para convertir: catálogo claro, checkout
-                confiable y automatizaciones.
+                Mensajes que posicionan y persuaden para sostener el crecimiento.
               </p>
             </article>
             <article className="feature-card service-card">
               <span className="service-icon" aria-hidden="true" />
-              <h3>Optimización & Growth</h3>
+              <h3>Ads + medición</h3>
               <p>
-                Mejoramos tu experiencia, tus textos y tus métricas para que
-                cada visita cuente.
+                Segmentación, eventos y datos que permiten optimizar cada peso.
               </p>
             </article>
           </div>
           <Link className="text-link" to="/services">
             Ver servicios y paquetes
-          </Link>
-        </div>
-      </div>
-
-      <div className="home-section">
-        <div className="container">
-          <div className="section-heading">
-            <h2>Paquetes de Landing + Formulario</h2>
-            <p className="lead">
-              Elige un punto de partida y escala cuando tu negocio lo pida.
-            </p>
-          </div>
-          <div className="packages-grid">
-            <article className="package-card">
-              <h3>Web Start</h3>
-              <p>Para empezar con una landing clara.</p>
-            </article>
-            <article className="package-card package-card--highlight">
-              <p className="package-badge">Más solicitado</p>
-              <h3>Web Growth</h3>
-              <p>Para generar leads constantes y dar seguimiento.</p>
-            </article>
-            <article className="package-card">
-              <h3>Web + SEO</h3>
-              <p>Para campañas y lanzamientos.</p>
-            </article>
-            <article className="package-card">
-              <h3>Web + SEO + Redes</h3>
-              <p>Para escalar con seguimiento y automatización.</p>
-            </article>
-          </div>
-          <Link className="text-link" to="/packages">
-            Ver paquetes
           </Link>
         </div>
       </div>
@@ -288,18 +249,17 @@ const Home = () => {
       <div className="home-section">
         <div className="container">
           <div className="section-heading">
-            <h2 className="eyebrow">Servicios recurrentes para crecer tu marca</h2>
-            <h2>¿Quieres que tu web siga generando resultados mes a mes?</h2>
+            <h2 className="eyebrow">Planes mensuales de crecimiento</h2>
+            <h2>Después del primer mes, optimizamos y escalamos</h2>
             <p className="lead">
-              Además del desarrollo web, ofrecemos planes mensuales de manejo de
-              redes sociales y mantenimiento web para mantener tu presencia
-              activa, actualizada y alineada a tus objetivos.
+              Mantén tu presencia activa con mantenimiento, SEO y contenido
+              social. Lo importante: medir y ajustar cada mes.
             </p>
           </div>
           <ul className="lead-list">
-            <li>Manejo de redes sociales enfocado en crecimiento de marca</li>
-            <li>Mantenimiento y ajustes de tu sitio web</li>
-            <li>Acompañamiento continuo</li>
+            <li>Mantenimiento web y SEO continuo</li>
+            <li>Redes sociales con enfoque en conversión</li>
+            <li>Acompañamiento estratégico mensual</li>
           </ul>
           <Link className="text-link" to="/services">
             Ver planes mensuales

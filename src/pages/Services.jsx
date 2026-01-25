@@ -5,10 +5,10 @@ const Services = () => {
   return (
     <section className="page">
       <Helmet>
-        <title>Servicios | Cosmic Flow Digital</title>
+        <title>Planes Mensuales | Cosmic Flow Digital</title>
         <meta
           name="description"
-          content="Landing pages, sitios corporativos y e-commerce con enfoque en conversión, claridad y crecimiento. UX/UI, copy, SEO base, analítica e integraciones."
+          content="Planes mensuales de crecimiento en Cancún, Q. Roo. Mantenimiento, SEO, contenido y optimización para seguir mejorando después del primer mes."
         />
       </Helmet>
       <div className="container">
@@ -42,63 +42,86 @@ const Services = () => {
         </div>
       </div>
       <div className="container">
-        <h2>Planes mensuales de crecimiento y mantenimiento</h2>
-        <p className="lead">
-          Servicios recurrentes para que tu web y tus redes trabajen de forma
-          constante, sin que tengas que preocuparte por la parte técnica o de
-          contenido.
-        </p>
+        <div className="section-heading">
+          <h2>Planes Mensuales de Crecimiento</h2>
+          <p className="lead">Después del primer mes</p>
+          <p className="lead">
+            La publicidad sin medición es gasto. La medición sin optimización es
+            oportunidad perdida.
+          </p>
+        </div>
         <div className="pricing-grid">
           <article className="pricing-card">
-            <p className="pricing-title">Manejo de Redes Sociales</p>
-            <p className="pricing-price">Desde $3,500 MXN / mes</p>
+            <p className="pricing-title">Flow Basic</p>
+            <p className="pricing-price">$150 USD / mes · aprox. $3,000 MXN</p>
             <ul className="pricing-list">
-              <li>Gestión de 1 o 2 redes sociales</li>
-              <li>Calendario mensual de contenido</li>
-              <li>Publicaciones enfocadas en visibilidad y marca</li>
-              <li>Copy y diseño alineado a tu identidad</li>
-              <li>Respuesta básica a mensajes (horario laboral)</li>
+              <li>Mantenimiento web</li>
+              <li>SEO técnico ligero</li>
+              <li>Redes sociales: 6 posts</li>
+              <li>Seguimiento básico de Pixel</li>
+              <li>Monitoreo general</li>
             </ul>
             <Link
               className="cta-button"
-              to="/contact?service=mensual&plan=redes"
+              to="/contact?service=mensual&plan=flow-basic"
             >
               Solicitar propuesta
             </Link>
           </article>
           <article className="pricing-card">
-            <p className="pricing-title">Mantenimiento Web</p>
-            <p className="pricing-price">Desde $2,500 MXN / mes</p>
+            <p className="pricing-title">Flow Growth</p>
+            <p className="pricing-price">$275 USD / mes · aprox. $5,500 MXN</p>
             <ul className="pricing-list">
-              <li>Revisión y mantenimiento del sitio</li>
-              <li>Ajustes menores de contenido</li>
-              <li>Revisión de formularios y enlaces</li>
-              <li>Soporte técnico básico</li>
-              <li>Monitoreo general del sitio</li>
+              <li>Mantenimiento web continuo</li>
+              <li>SEO on-page básico</li>
+              <li>Redes sociales: 10 posts</li>
+              <li>Monitoreo y ajustes de Pixel</li>
+              <li>Optimización básica de conversiones</li>
+              <li>Revisión de formularios y flujos</li>
             </ul>
             <Link
               className="cta-button"
-              to="/contact?service=mensual&plan=mantenimiento"
+              to="/contact?service=mensual&plan=flow-growth"
             >
               Solicitar propuesta
             </Link>
           </article>
           <article className="pricing-card highlight">
             <p className="package-badge">Recomendado</p>
-            <p className="pricing-title">Web + Redes (Mensual)</p>
-            <p className="pricing-price">Desde $8,500 MXN / mes</p>
+            <p className="pricing-title">Flow Scale</p>
+            <p className="pricing-price">$425 USD / mes · aprox. $8,500 MXN</p>
             <ul className="pricing-list">
-              <li>Manejo de redes sociales</li>
-              <li>Mantenimiento web</li>
-              <li>Soporte prioritario</li>
-              <li>Acompañamiento continuo</li>
+              <li>Mantenimiento web prioritario</li>
+              <li>SEO on-page + optimización continua</li>
+              <li>Ajustes de contenido SEO</li>
+              <li>Redes sociales: 14 posts</li>
+              <li>Optimización de tasa de conversión (CRO)</li>
+              <li>Segmentación por comportamiento</li>
+              <li>Acompañamiento estratégico mensual</li>
             </ul>
-            <p className="pricing-description">
-              Recomendado para marcas que quieren crecer sin fricción.
-            </p>
             <Link
               className="cta-button"
-              to="/contact?service=mensual&plan=web-redes"
+              to="/contact?service=mensual&plan=flow-scale"
+            >
+              Solicitar propuesta
+            </Link>
+          </article>
+          <article className="pricing-card">
+            <p className="pricing-title">Flow Ecosystem</p>
+            <p className="pricing-price">$600 USD / mes · aprox. $12,000 MXN</p>
+            <ul className="pricing-list">
+              <li>Mantenimiento web avanzado</li>
+              <li>SEO continuo + mejoras de contenido</li>
+              <li>Estrategia de crecimiento orgánico</li>
+              <li>Redes sociales: 20 posts</li>
+              <li>Gestión y optimización SEA</li>
+              <li>Pixel, eventos y segmentación avanzada</li>
+              <li>Optimización continua de conversiones</li>
+            </ul>
+            <p className="pricing-description">⚠️ Inversión publicitaria no incluida.</p>
+            <Link
+              className="cta-button"
+              to="/contact?service=mensual&plan=flow-ecosystem"
             >
               Solicitar propuesta
             </Link>
