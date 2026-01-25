@@ -39,9 +39,7 @@ const Process = () => {
           </li>
           <li>
             <h3>Evolución</h3>
-            <p>
-              Medimos, ajustamos y mejoramos para seguir creciendo contigo.
-            </p>
+            <p>Medimos, ajustamos y mejoramos para seguir creciendo contigo.</p>
           </li>
         </ol>
       </div>

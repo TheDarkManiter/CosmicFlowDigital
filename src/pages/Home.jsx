@@ -91,35 +91,33 @@ const Home = () => {
       <div className="home-section">
         <div className="container">
           <div className="section-heading">
-            <h2>Elige tu punto de entrada</h2>
+            <h2>Paquetes de Desarrollo Web</h2>
             <p className="lead">
-              Lanzamiento con pago único o planes mensuales después del primer
-              mes.
+              Elige un punto de partida claro, con precios simples y enfoque en
+              conversión.
             </p>
           </div>
-          <div className="services-grid">
-            <article className="feature-card service-card">
-              <span className="service-icon" aria-hidden="true" />
-              <h3>Paquetes de Lanzamiento</h3>
-              <p>
-                Pago único con 1 mes incluido para medir y empezar a optimizar.
-              </p>
-              <Link className="text-link" to="/packages">
-                Ver paquetes
-              </Link>
+          <div className="packages-grid">
+            <article className="package-card">
+              <h3>Landing Básica</h3>
+              <p>$100 USD</p>
+              <p>Presencia simple para empezar.</p>
             </article>
-            <article className="feature-card service-card">
-              <span className="service-icon" aria-hidden="true" />
-              <h3>Planes Mensuales de Crecimiento</h3>
-              <p>
-                Después del primer mes, optimizamos y escalamos con un plan
-                continuo.
-              </p>
-              <Link className="text-link" to="/services">
-                Ver planes mensuales
-              </Link>
+            <article className="package-card package-card--highlight">
+              <p className="package-badge">Más solicitado</p>
+              <h3>Web Conversion</h3>
+              <p>$300 USD</p>
+              <p>WhatsApp + formulario para capturar leads.</p>
+            </article>
+            <article className="package-card">
+              <h3>Web + SEO + Leads</h3>
+              <p>$600 USD</p>
+              <p>SEO mejorado y base de leads para campañas.</p>
             </article>
           </div>
+          <Link className="text-link" to="/packages">
+            Ver paquetes
+          </Link>
         </div>
       </div>
 
@@ -249,17 +247,14 @@ const Home = () => {
       <div className="home-section">
         <div className="container">
           <div className="section-heading">
-            <h2 className="eyebrow">Planes mensuales de crecimiento</h2>
-            <h2>Después del primer mes, optimizamos y escalamos</h2>
+            <h2>Crecimiento mensual</h2>
             <p className="lead">
-              Mantén tu presencia activa con mantenimiento, SEO y contenido
-              social. Lo importante: medir y ajustar cada mes.
+              Planes mensuales de redes, SEO y campañas con medición.
             </p>
           </div>
           <ul className="lead-list">
-            <li>Mantenimiento web y SEO continuo</li>
-            <li>Redes sociales con enfoque en conversión</li>
-            <li>Acompañamiento estratégico mensual</li>
+            <li>6/12/20 posts + campaña SEA</li>
+            <li>Ads aparte (tú decides el presupuesto)</li>
           </ul>
           <Link className="text-link" to="/services">
             Ver planes mensuales

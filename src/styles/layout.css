@@ -430,6 +430,13 @@
   gap: 12px;
 }
 
+.footer-brand-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
 .footer-logo {
   width: 44px;
   height: 44px;
@@ -462,6 +469,26 @@
   color: var(--color-muted);
   font-size: 12px;
   margin-top: 6px;
+}
+
+.footer-brand ._powered_1y24i_141 {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--color-muted);
+}
+
+.footer-brand ._poweredText_1y24i_155 {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.footer-brand ._poweredName_1y24i_183 {
+  font-size: 11px;
+  margin: 0;
+  color: var(--color-light);
+  font-weight: 600;
 }
 
 .footer-links {

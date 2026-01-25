@@ -6,26 +6,35 @@ const Contact = () => {
   const [searchParams] = useSearchParams();
   const packageOptions = useMemo(
     () => [
-      { slug: "web-start", label: "Web Start" },
-      { slug: "web-growth", label: "Web Growth" },
-      { slug: "web-seo", label: "Web + SEO" },
-      { slug: "web-seo-redes", label: "Web + SEO + Redes" },
+      { slug: "web-landing-basic", label: "Landing Básica (Web)" },
+      { slug: "web-conversion", label: "Web Conversion (Web)" },
+      { slug: "web-seo-leads", label: "Web + SEO + Leads (BD)" },
+      { slug: "web-ecommerce", label: "E-commerce Completo (Web)" },
     ],
     []
   );
   const monthlyOptions = useMemo(
     () => [
-      { slug: "mensual-redes", label: "Mensual: Manejo de Redes Sociales" },
-      { slug: "mensual-mantenimiento", label: "Mensual: Mantenimiento Web" },
-      { slug: "mensual-web-redes", label: "Mensual: Web + Redes" },
+      {
+        slug: "monthly-basic",
+        label: "Monthly Basic (Mensual) — 6 posts + campaña",
+      },
+      {
+        slug: "monthly-growth",
+        label: "Monthly Growth (Mensual) — 12 posts + campaña",
+      },
+      {
+        slug: "monthly-pro",
+        label: "Monthly Pro (Mensual) — 20 posts + seguimiento",
+      },
     ],
     []
   );
   const monthlyPlanByParam = useMemo(
     () => ({
-      redes: "mensual-redes",
-      mantenimiento: "mensual-mantenimiento",
-      "web-redes": "mensual-web-redes",
+      "monthly-basic": "monthly-basic",
+      "monthly-growth": "monthly-growth",
+      "monthly-pro": "monthly-pro",
     }),
     []
   );
@@ -35,17 +44,17 @@ const Contact = () => {
   );
   const packageMessageBySlug = useMemo(
     () => ({
-      "web-start": "quiero una presencia profesional clara",
-      "web-growth": "quiero leads constantes y seguimiento",
-      "web-seo": "quiero posicionarme en Google y crecer orgánico",
-      "web-seo-redes": "quiero coherencia web+redes para crecer marca",
-      "mensual-redes": "quiero apoyo mensual para redes sociales",
-      "mensual-mantenimiento": "quiero un sitio estable y actualizado",
-      "mensual-web-redes": "quiero crecimiento continuo sin fricción",
+      "web-landing-basic": "quiero una landing sencilla para empezar",
+      "web-conversion": "quiero captar leads con WhatsApp y formulario",
+      "web-seo-leads": "quiero SEO más fuerte y una base de leads para campañas",
+      "web-ecommerce": "quiero vender en línea con e-commerce completo",
+      "monthly-basic": "quiero presencia mensual con contenido y campaña básica",
+      "monthly-growth": "quiero crecer con más contenido y mejor campaña",
+      "monthly-pro": "quiero seguimiento completo y optimización continua",
     }),
     []
   );
-  const defaultPackageSlug = "web-growth";
+  const defaultPackageSlug = "web-conversion";
   const selectedPackageSlug = useMemo(() => {
     const slug = searchParams.get("package");
     if (slug && allOptions.some((option) => option.slug === slug)) {
@@ -89,6 +98,7 @@ const Contact = () => {
     "whatsapp",
     "business",
     "objective",
+    "consent",
   ];
   const step1Fields = ["package", "business", "objective"];
 
@@ -106,21 +116,25 @@ const Contact = () => {
   const step1Errors = getErrors(formData, step1Fields);
   const isFormValid = Object.keys(errors).length === 0;
   const isStep1Valid = Object.keys(step1Errors).length === 0;
+  const isEmailValid = Boolean(formData.email && formData.email.trim());
+  const isEmailFormValid = isFormValid && isEmailValid;
 
   const packageLabel =
     allOptions.find((option) => option.slug === formData.package)?.label ||
-    "Web Growth";
+    "Web Conversion";
 
   const buildMessage = () => {
     const packageIntent =
       packageMessageBySlug[formData.package] ||
-      packageMessageBySlug["web-growth"];
-    const selectionLabel = formData.package.startsWith("mensual-")
-      ? "Servicio mensual"
-      : "Paquete";
+      packageMessageBySlug["web-conversion"];
+    const isMonthly = monthlyOptions.some(
+      (option) => option.slug === formData.package
+    );
+    const selectionLabel = isMonthly ? "Plan Mensual" : "Paquete Web";
     const lines = [
       `Hola, soy ${formData.name}.`,
-      `${selectionLabel}: ${packageLabel} (${packageIntent}).`,
+      `Tipo: ${selectionLabel}.`,
+      `Plan seleccionado: ${packageLabel} (${packageIntent}).`,
       `Negocio: ${formData.business}.`,
       `Objetivo: ${formData.objective}.`,
       `WhatsApp: ${formData.whatsapp}.`,
@@ -190,6 +204,14 @@ const Contact = () => {
     action();
   };
 
+  const runIfValidEmail = (action) => {
+    if (!isEmailFormValid) {
+      touchFields([...requiredFields, "email"]);
+      return;
+    }
+    action();
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     runIfValid(() => {
@@ -199,7 +221,7 @@ const Contact = () => {
   };
 
   const handleEmailClick = () => {
-    runIfValid(() => {
+    runIfValidEmail(() => {
       window.location.href = mailtoHref;
     });
   };
@@ -225,8 +247,8 @@ const Contact = () => {
       <div className="container">
         <h1>Contacto</h1>
         <p className="lead">
-          Cuéntanos tu objetivo y te respondemos con una propuesta clara en 24–48
-          horas.
+          Cuéntanos tu objetivo y te respondemos con una propuesta clara en
+          24–48 horas.
         </p>
         <p className="lead">
           Si buscas desarrollo web, manejo de redes o mantenimiento mensual,
@@ -357,7 +379,7 @@ const Contact = () => {
                   ) : null}
                 </div>
                 <div className="form-field">
-                  <label htmlFor="email">Email (opcional)</label>
+                  <label htmlFor="email">Email (si deseas respuesta por correo)</label>
                   <input
                     id="email"
                     name="email"
@@ -389,6 +411,9 @@ const Contact = () => {
                     />
                     Acepto ser contactado por WhatsApp o correo.
                   </label>
+                  {touched.consent && errors.consent ? (
+                    <span className="form-error">{errors.consent}</span>
+                  ) : null}
                 </div>
               </div>
             )}
@@ -411,7 +436,7 @@ const Contact = () => {
                     className="cta-button cta-secondary"
                     type="button"
                     onClick={handleEmailClick}
-                    disabled={!isFormValid}
+                    disabled={!isEmailFormValid}
                   >
                     Enviar por correo
                   </button>

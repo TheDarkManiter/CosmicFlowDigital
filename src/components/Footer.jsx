@@ -7,13 +7,22 @@ const Footer = () => {
     <footer className="site-footer">
       <div className="container footer-content">
         <div className="footer-brand">
-          <img
-            className="footer-logo"
-            src="/logo-cosmic-flow-digital.jpg"
-            alt="Cosmic Flow Digital"
-            loading="lazy"
-            decoding="async"
-          />
+          <div className="footer-brand-mark">
+            <span className="_poweredText_1y24i_155">Powered by</span>
+            <img
+              className="footer-logo"
+              src="/logo-cosmic-flow-digital.jpg"
+              alt="Cosmic Flow Digital"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="_powered_1y24i_141">
+              <span className="_poweredText_1y24i_155">Desarrollado por</span>
+              <p className="_poweredName_1y24i_183">
+                ISC Luis M Santa Maria
+              </p>
+            </div>
+          </div>
           <div>
             <p className="footer-title">Cosmic Flow Digital</p>
             <p className="footer-note">
@@ -28,7 +37,7 @@ const Footer = () => {
         <div className="footer-links">
           <span className="footer-title">Explorar</span>
           <Link to="/services">Planes mensuales</Link>
-          <Link to="/packages">Paquetes de lanzamiento</Link>
+          <Link to="/packages">Paquetes web</Link>
           <Link to="/process">Proceso</Link>
           <Link to="/contact">Contacto</Link>
         </div>
