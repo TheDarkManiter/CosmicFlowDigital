@@ -1,8 +1,21 @@
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
+  const [isCompact, setIsCompact] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setIsCompact(window.scrollY > 80);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="site-header">
+    <header className={`site-header${isCompact ? " is-compact" : ""}`}>
       <div className="container header-content header-bar">
         <div className="brand">
           <img
@@ -12,7 +25,7 @@ const Header = () => {
           />
           <div>
             <p className="brand-name">Cosmic Flow Digital</p>
-            <p className="brand-tagline">Deja tu huella online.</p>
+            <p className="brand-tagline">Marketing Digital</p>
           </div>
         </div>
         <nav className="main-nav">

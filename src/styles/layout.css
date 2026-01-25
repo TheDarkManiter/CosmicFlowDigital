@@ -48,7 +48,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   overflow: hidden;
   isolation: isolate;
-  min-height: 220px;
+  min-height: 170px;
 }
 
 .site-header::before {
@@ -83,6 +83,7 @@
   padding: 16px 20px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35),
     0 0 24px rgba(0, 0, 0, 0.35);
+  transition: padding 0.2s ease, border-radius 0.2s ease;
 }
 
 .brand {
@@ -122,6 +123,41 @@
   gap: 18px;
   font-size: 15px;
   flex-wrap: wrap;
+}
+
+.site-header.is-compact .header-bar {
+  padding: 10px 16px;
+  border-radius: 12px;
+}
+
+.site-header.is-compact {
+  min-height: 120px;
+}
+.site-header.is-compact .brand-logo {
+  width: 72px;
+  height: 72px;
+}
+
+.site-header.is-compact .brand-name {
+  font-size: 15px;
+}
+
+.site-header.is-compact .brand-tagline {
+  display: none;
+}
+
+.site-header.is-compact .main-nav {
+  gap: 10px;
+  font-size: 14px;
+}
+
+.site-header.is-compact .main-nav a {
+  padding: 6px 10px;
+}
+
+.site-header.is-compact .header-cta {
+  padding: 8px 14px;
+  font-size: 14px;
 }
 
 .main-nav a {
