@@ -13,23 +13,51 @@ const Contact = () => {
     ],
     []
   );
+  const monthlyOptions = useMemo(
+    () => [
+      { slug: "mensual-redes", label: "Mensual: Manejo de Redes Sociales" },
+      { slug: "mensual-mantenimiento", label: "Mensual: Mantenimiento Web" },
+      { slug: "mensual-web-redes", label: "Mensual: Web + Redes" },
+    ],
+    []
+  );
+  const monthlyPlanByParam = useMemo(
+    () => ({
+      redes: "mensual-redes",
+      mantenimiento: "mensual-mantenimiento",
+      "web-redes": "mensual-web-redes",
+    }),
+    []
+  );
+  const allOptions = useMemo(
+    () => [...packageOptions, ...monthlyOptions],
+    [monthlyOptions, packageOptions]
+  );
   const packageMessageBySlug = useMemo(
     () => ({
       "web-start": "quiero una presencia profesional clara",
       "web-growth": "quiero leads constantes y seguimiento",
       "web-seo": "quiero posicionarme en Google y crecer orgánico",
       "web-seo-redes": "quiero coherencia web+redes para crecer marca",
+      "mensual-redes": "quiero apoyo mensual para redes sociales",
+      "mensual-mantenimiento": "quiero un sitio estable y actualizado",
+      "mensual-web-redes": "quiero crecimiento continuo sin fricción",
     }),
     []
   );
   const defaultPackageSlug = "web-growth";
   const selectedPackageSlug = useMemo(() => {
     const slug = searchParams.get("package");
-    if (slug && packageOptions.some((option) => option.slug === slug)) {
+    if (slug && allOptions.some((option) => option.slug === slug)) {
       return slug;
     }
+    const service = searchParams.get("service");
+    const plan = searchParams.get("plan");
+    if (service === "mensual" && plan && monthlyPlanByParam[plan]) {
+      return monthlyPlanByParam[plan];
+    }
     return defaultPackageSlug;
-  }, [packageOptions, searchParams]);
+  }, [allOptions, defaultPackageSlug, monthlyPlanByParam, searchParams]);
   const utmSource = searchParams.get("utm_source");
   const utmMedium = searchParams.get("utm_medium");
   const utmCampaign = searchParams.get("utm_campaign");
@@ -80,15 +108,19 @@ const Contact = () => {
   const isStep1Valid = Object.keys(step1Errors).length === 0;
 
   const packageLabel =
-    packageOptions.find((option) => option.slug === formData.package)?.label ||
+    allOptions.find((option) => option.slug === formData.package)?.label ||
     "Web Growth";
 
   const buildMessage = () => {
     const packageIntent =
-      packageMessageBySlug[formData.package] || packageMessageBySlug["web-growth"];
+      packageMessageBySlug[formData.package] ||
+      packageMessageBySlug["web-growth"];
+    const selectionLabel = formData.package.startsWith("mensual-")
+      ? "Servicio mensual"
+      : "Paquete";
     const lines = [
       `Hola, soy ${formData.name}.`,
-      `Paquete: ${packageLabel} (${packageIntent}).`,
+      `${selectionLabel}: ${packageLabel} (${packageIntent}).`,
       `Negocio: ${formData.business}.`,
       `Objetivo: ${formData.objective}.`,
       `WhatsApp: ${formData.whatsapp}.`,
@@ -196,6 +228,10 @@ const Contact = () => {
           Cuéntanos tu objetivo y te respondemos con una propuesta clara en 24–48
           horas.
         </p>
+        <p className="lead">
+          Si buscas desarrollo web, manejo de redes o mantenimiento mensual,
+          cuéntanos tu objetivo y te orientamos.
+        </p>
         <div className="contact-card contact-form-card">
           <div className="form-header">
             <div className="step-indicator" role="list">
@@ -214,15 +250,15 @@ const Contact = () => {
             </div>
             <h2>Formulario rápido</h2>
             <p className="lead">
-              Elige el paquete y dinos lo esencial para prepararte una propuesta
-              clara. Toma menos de 60 segundos.
+              Elige el servicio o paquete y dinos lo esencial para prepararte
+              una propuesta clara. Toma menos de 60 segundos.
             </p>
           </div>
           <form className="contact-form" onSubmit={handleFormSubmit}>
             {step === 1 ? (
               <div className="form-grid">
                 <div className="form-field">
-                  <label htmlFor="package">Paquete</label>
+                  <label htmlFor="package">Servicio o paquete</label>
                   <select
                     id="package"
                     name="package"
@@ -232,7 +268,7 @@ const Contact = () => {
                     aria-invalid={Boolean(touched.package && errors.package)}
                     required
                   >
-                    {packageOptions.map((option) => (
+                    {allOptions.map((option) => (
                       <option key={option.slug} value={option.slug}>
                         {option.label}
                       </option>

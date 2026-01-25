@@ -96,6 +96,44 @@ const Packages = () => {
             Hablar por WhatsApp
           </a>
         </div>
+        <div className="contact-card">
+          <h2>Costos externos no incluidos</h2>
+          <p className="lead">
+            Algunos servicios requieren pagos directos a terceros y no están
+            incluidos en los paquetes, salvo que se indique lo contrario.
+          </p>
+          <ul className="lead-list">
+            <li>Dominio web (.com, .mx, etc.)</li>
+            <li>Hosting</li>
+            <li>Correos profesionales</li>
+            <li>Herramientas externas (CRM, email marketing, anuncios)</li>
+          </ul>
+          <p className="footer-note">
+            Estos costos se cotizan por separado y se contratan a nombre del
+            cliente.
+          </p>
+        </div>
+        <div className="contact-card">
+          <h2>Preguntas frecuentes</h2>
+          <ul className="lead-list">
+            <li>
+              <strong>¿Incluye dominio y hosting?</strong> No, se cotizan por
+              separado para que el sitio quede a tu nombre.
+            </li>
+            <li>
+              <strong>¿Cuánto tarda el desarrollo?</strong> Depende del alcance,
+              normalmente entre 1 y 3 semanas.
+            </li>
+            <li>
+              <strong>¿Puedo cambiar de paquete?</strong> Sí, puedes escalar si
+              tu negocio lo necesita.
+            </li>
+            <li>
+              <strong>¿Ofrecen mantenimiento mensual?</strong> Sí, tenemos
+              planes mensuales para web y redes.
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
   );

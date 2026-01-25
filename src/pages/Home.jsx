@@ -23,7 +23,7 @@ const Home = () => {
       <div className="container hero hero--cosmic">
         <div className="hero-inner">
           <div className="hero-copy">
-            <p className="eyebrow">Desarrollo web con enfoque en resultados</p>
+            <h2 className="eyebrow">Desarrollo web con enfoque en resultados</h2>
             <h1>Deja tu huella online con una web que vende</h1>
             <p className="lead">
               Somos un estudio que diseña y construye sitios web que se ven bien
@@ -57,9 +57,27 @@ const Home = () => {
           <div className="hero-visual" aria-hidden="true">
             <div className="visual-panel">
               <div className="visual-grid">
-                <div className="visual-tile visual-tile--wide" />
-                <div className="visual-tile" />
-                <div className="visual-tile" />
+                <img
+                  className="visual-tile visual-tile--wide"
+                  src="/promera%20imegen.webp"
+                  alt="Composición premium de interfaz digital para crecimiento"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  className="visual-tile"
+                  src="/segunda%20imagen.webp"
+                  alt="Detalle de experiencia web optimizada para conversión"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  className="visual-tile"
+                  src="/tercera%20imagen.webp"
+                  alt="Texturas y luces de marca con estilo cósmico"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div className="visual-glow" />
             </div>
@@ -122,7 +140,10 @@ const Home = () => {
             <li>Lanzamiento en 1–3 semanas (según alcance)</li>
             <li>Diseño mobile-first</li>
             <li>SEO técnico + textos que convierten</li>
-            <li>Captura de leads + seguimiento (WhatsApp, email, CRM)</li>
+            <li>
+              Captura de leads + seguimiento inicial (WhatsApp, email o CRM
+              según paquete)
+            </li>
             <li>Soporte cercano y mejoras por iteración</li>
           </ul>
         </div>
@@ -235,7 +256,7 @@ const Home = () => {
               </p>
               <a
                 className="text-link project-link"
-                href="https://fightingbullsacademy.netlify.app/"
+                href="https://fightingbullsacademy.pages.dev/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -261,6 +282,28 @@ const Home = () => {
               <p className="project-result">Checkout claro y confiable</p>
             </article>
           </div>
+        </div>
+      </div>
+
+      <div className="home-section">
+        <div className="container">
+          <div className="section-heading">
+            <h2 className="eyebrow">Servicios recurrentes para crecer tu marca</h2>
+            <h2>¿Quieres que tu web siga generando resultados mes a mes?</h2>
+            <p className="lead">
+              Además del desarrollo web, ofrecemos planes mensuales de manejo de
+              redes sociales y mantenimiento web para mantener tu presencia
+              activa, actualizada y alineada a tus objetivos.
+            </p>
+          </div>
+          <ul className="lead-list">
+            <li>Manejo de redes sociales enfocado en crecimiento de marca</li>
+            <li>Mantenimiento y ajustes de tu sitio web</li>
+            <li>Acompañamiento continuo</li>
+          </ul>
+          <Link className="text-link" to="/services">
+            Ver planes mensuales
+          </Link>
         </div>
       </div>
 
