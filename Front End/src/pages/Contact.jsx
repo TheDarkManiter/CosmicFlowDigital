@@ -4,6 +4,8 @@ import { useSearchParams } from "react-router-dom";
 
 const Contact = () => {
   const [searchParams] = useSearchParams();
+  const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "http://localhost:3000")
+    .replace(/\/$/, "");
   const packageOptions = useMemo(
     () => [
       { slug: "web-landing-basic", label: "Landing Básica (Web)" },
@@ -87,6 +89,9 @@ const Contact = () => {
   });
   const [touched, setTouched] = useState({});
   const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   useEffect(() => {
     setFormData((prev) => ({ ...prev, package: selectedPackageSlug }));
@@ -196,32 +201,97 @@ const Contact = () => {
     setStep(2);
   };
 
-  const runIfValid = (action) => {
+  const runIfValid = async (action) => {
     if (!isFormValid) {
       touchFields(requiredFields);
       return;
     }
-    action();
+    await action();
   };
 
-  const runIfValidEmail = (action) => {
+  const runIfValidEmail = async (action) => {
     if (!isEmailFormValid) {
       touchFields([...requiredFields, "email"]);
       return;
     }
-    action();
+    await action();
   };
 
-  const handleSubmit = (event) => {
+  const sendLead = async () => {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 9000);
+
+    try {
+      setIsSubmitting(true);
+      setSubmitError("");
+      setSubmitSuccess(false);
+
+      const payload = {
+        package_slug: formData.package,
+        business: formData.business.trim(),
+        objective: formData.objective,
+        name: formData.name.trim(),
+        whatsapp: formData.whatsapp.trim(),
+        email: formData.email ? formData.email.trim() : undefined,
+        message: formData.message ? formData.message.trim().slice(0, 2000) : undefined,
+        consent: Boolean(formData.consent),
+        utm_source: utmSource || undefined,
+        utm_medium: utmMedium || undefined,
+        utm_campaign: utmCampaign || undefined,
+        utm_content: utmContent || undefined,
+      };
+
+      const response = await fetch(`${apiBaseUrl}/api/leads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+
+      if (!response.ok) {
+        let errorMessage = "No se pudo enviar el formulario.";
+        try {
+          const data = await response.json();
+          if (data && data.message) {
+            errorMessage = data.message;
+          }
+        } catch {
+          // Ignore JSON parse errors.
+        }
+        throw new Error(errorMessage);
+      }
+
+      setSubmitSuccess(true);
+      return true;
+    } catch (error) {
+      setSubmitError(error.message || "No se pudo enviar el formulario.");
+      return false;
+    } finally {
+      clearTimeout(timeout);
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    runIfValid(() => {
+    await runIfValid(async () => {
+      const sent = await sendLead();
       const whatsappUrl = `https://wa.me/525578296609?text=${encodedMessage}`;
+      if (!sent) {
+        window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+        return;
+      }
       window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     });
   };
 
-  const handleEmailClick = () => {
-    runIfValidEmail(() => {
+  const handleEmailClick = async () => {
+    await runIfValidEmail(async () => {
+      const sent = await sendLead();
+      if (!sent) {
+        window.location.href = mailtoHref;
+        return;
+      }
       window.location.href = mailtoHref;
     });
   };
@@ -330,12 +400,8 @@ const Contact = () => {
                   >
                     <option value="Generar leads">Generar leads</option>
                     <option value="Vender en línea">Vender en línea</option>
-                    <option value="Posicionarme (SEO)">
-                      Posicionarme (SEO)
-                    </option>
-                    <option value="Lanzar una campaña">
-                      Lanzar una campaña
-                    </option>
+                    <option value="Posicionarme (SEO)">Posicionarme (SEO)</option>
+                    <option value="Lanzar una campaña">Lanzar una campaña</option>
                   </select>
                   {touched.objective && errors.objective ? (
                     <span className="form-error">{errors.objective}</span>
@@ -429,20 +495,24 @@ const Contact = () => {
                 </button>
               ) : (
                 <>
-                  <button className="cta-button" type="submit">
-                    Enviar por WhatsApp
+                  <button className="cta-button" type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? "Enviando..." : "Enviar por WhatsApp"}
                   </button>
                   <button
                     className="cta-button cta-secondary"
                     type="button"
                     onClick={handleEmailClick}
-                    disabled={!isEmailFormValid}
+                    disabled={!isEmailFormValid || isSubmitting}
                   >
                     Enviar por correo
                   </button>
                 </>
               )}
             </div>
+            {submitSuccess ? (
+              <p className="form-trust">Enviado correctamente.</p>
+            ) : null}
+            {submitError ? <p className="form-error">{submitError}</p> : null}
             <div className="form-trust">
               <p>Respuesta rápida en horario laboral.</p>
               <p>Brief sencillo · Propuesta en 24–48 h</p>

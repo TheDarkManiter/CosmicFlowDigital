@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: cosmicflow_postgres
+    environment:
+      POSTGRES_DB: cosmicflow
+      POSTGRES_USER: cosmicflow_user
+      POSTGRES_PASSWORD: cosmicflow_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  pgdata:
