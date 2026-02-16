@@ -100,18 +100,18 @@ const Home = () => {
           <div className="packages-grid">
             <article className="package-card">
               <h3>Landing Básica</h3>
-              <p>$100 USD</p>
+              <p>Desde $300 USD</p>
               <p>Presencia simple para empezar.</p>
             </article>
             <article className="package-card package-card--highlight">
               <p className="package-badge">Más solicitado</p>
               <h3>Web Conversion</h3>
-              <p>$300 USD</p>
+              <p>Desde $800 USD</p>
               <p>WhatsApp + formulario para capturar leads.</p>
             </article>
             <article className="package-card">
               <h3>Web + SEO + Leads</h3>
-              <p>$600 USD</p>
+              <p>Desde $1000 USD</p>
               <p>SEO mejorado y base de leads para campañas.</p>
             </article>
           </div>
