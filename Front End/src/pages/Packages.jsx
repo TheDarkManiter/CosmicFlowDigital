@@ -6,8 +6,9 @@ const Packages = () => {
     {
       title: "Landing Básica",
       slug: "web-landing-basic",
-      price: "$100 USD",
-      description: "Una landing sencilla para empezar con presencia online clara.",
+      price: "Desde $300 USD",
+      description:
+        "Una landing profesional para comenzar con presencia online clara y confiable.",
       items: [
         "1 página (hero + propuesta + contacto)",
         "Botón a WhatsApp",
@@ -21,14 +22,13 @@ const Packages = () => {
     {
       title: "Web Conversion",
       slug: "web-conversion",
-      price: "$300 USD",
-      description:
-        "Más enfoque en conversión: WhatsApp + formulario para capturar leads.",
+      price: "Desde $800 USD",
+      description: "Más enfoque en conversión y captación real de clientes.",
       items: [
-        "Landing o sitio corto (3–4 secciones)",
-        "Botón a WhatsApp + formulario de leads",
-        "Copy claro con CTAs estratégicos",
-        "SEO básico (estructura + headings)",
+        "Landing o sitio corto (3-4 secciones)",
+        "WhatsApp + formulario de leads",
+        "Copy optimizado con CTAs estratégicos",
+        "SEO base (estructura + headings)",
         "Tracking básico (medición inicial)",
       ],
       ctaTo:
@@ -37,14 +37,14 @@ const Packages = () => {
     {
       title: "Web + SEO + Leads (BD)",
       slug: "web-seo-leads",
-      price: "$600 USD",
+      price: "Desde $1000 USD",
       description:
-        "SEO más trabajado + backend con base de datos para campañas y seguimiento de leads.",
+        "SEO más trabajado + backend con base de datos para campañas y seguimiento.",
       items: [
-        "Sitio completo (5–7 secciones)",
-        "SEO on-page mejorado (textos clave + estructura)",
+        "Sitio completo (5-7 secciones)",
+        "SEO on-page mejorado",
         "Backend + base de datos de leads",
-        "Formularios conectados (campañas)",
+        "Formularios conectados",
         "Pixel + eventos básicos (Lead/Contact/WhatsAppClick)",
       ],
       ctaTo:
@@ -53,12 +53,11 @@ const Packages = () => {
     {
       title: "E-commerce Completo",
       slug: "web-ecommerce",
-      price: "$1200 USD",
-      description:
-        "Tienda online completa con conversión, medición y base para escalar.",
+      price: "Desde $1500 USD",
+      description: "Tienda online lista para vender y escalar.",
       items: [
         "Catálogo + checkout",
-        "Pagos (según plataforma)",
+        "Integración de pagos (según plataforma)",
         "SEO base para productos",
         "Captura de leads + medición",
         "Preparado para campañas",
@@ -74,7 +73,7 @@ const Packages = () => {
         <title>Paquetes de Desarrollo Web | Cosmic Flow Digital</title>
         <meta
           name="description"
-          content="Paquetes de desarrollo web con pago único. Sitios modernos, rápidos y listos para convertir y crecer con medición."
+          content="Paquetes de desarrollo web con pago único. Sitios modernos, rápidos y estratégicos que comunican claro, capturan leads y se preparan para escalar con medición."
         />
         <meta
           property="og:title"
@@ -82,7 +81,7 @@ const Packages = () => {
         />
         <meta
           property="og:description"
-          content="Paquetes de desarrollo web con pago único. Sitios modernos, rápidos y listos para convertir y crecer con medición."
+          content="Paquetes de desarrollo web con pago único. Sitios modernos, rápidos y estratégicos que comunican claro, capturan leads y se preparan para escalar con medición."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -91,8 +90,8 @@ const Packages = () => {
         <h1>Paquetes de Desarrollo Web</h1>
         <p className="lead">Pago único · Web lista para convertir y crecer.</p>
         <p className="lead">
-          Construimos sitios modernos y rápidos que comunican claro, capturan
-          leads y se preparan para escalar con medición.
+          Construimos sitios modernos, rápidos y estratégicos que comunican
+          claro, capturan leads y se preparan para escalar con medición.
         </p>
         <div className="pricing-grid">
           {plans.map((plan) => (
@@ -106,12 +105,15 @@ const Packages = () => {
         <div className="contact-card">
           <h2>Notas importantes</h2>
           <ul className="lead-list">
-            <li>Inversión en anuncios NO incluida.</li>
+            <li>La inversión en anuncios no está incluida.</li>
             <li>
-              Costos externos (dominio/hosting/herramientas) se cotizan por
-              separado.
+              Costos externos como dominio, hosting o herramientas se cotizan
+              por separado.
             </li>
-            <li>Los tiempos dependen del alcance y entregables.</li>
+            <li>
+              Los tiempos de entrega dependen del alcance y entregables
+              acordados.
+            </li>
           </ul>
         </div>
       </div>

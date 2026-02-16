@@ -1,0 +1,5 @@
+
+> cosmic-flow-digital-backend@0.1.0 start
+> node src/server.js
+
+API listening on port 3000
